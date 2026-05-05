@@ -389,7 +389,10 @@ def backtest_portfolio(portfolio: pd.DataFrame, returns: pd.DataFrame, universe:
 
     turnover = (traded.mean() / book_value.mean()) * 100
 
-    net_pnl = gross_pnl - traded * 1e-4
+    # QRT Guidelines: 2bps execution cost + 0.5% annualised financing cost on GMV
+    execution_cost = traded * 2e-4
+    financing_cost = book_value * (0.005 / 252)
+    net_pnl = gross_pnl - execution_cost - financing_cost
 
     gross_sharpe_ratio = (gross_pnl.mean() / gross_pnl.std()) * np.sqrt(252)
 
