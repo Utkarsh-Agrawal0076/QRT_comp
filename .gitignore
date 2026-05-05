@@ -9,7 +9,7 @@ stores/
 *.parquet
 top_5000_yf_data.pkl
 *.csv
+!top_5000_us_by_marketcap.csv
 qrt_academy_IND22*.csv
-
 # Temporary files
 *.txt
