@@ -5,7 +5,7 @@ import sys
 
 # Ensure phase2_qrt_challenge/scripts is in path
 sys.path.append(os.path.abspath('phase2_qrt_challenge/scripts'))
-from technical_indicators import calculate_all_indicators_parallel
+from technical_indicators import calculate_atr_vectorized
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -57,7 +57,7 @@ def main():
     
     print("Calculating technical indicators on the recent window...")
     # Compute indicators over the 250-day window
-    indicators_dict = calculate_all_indicators_parallel(recent_data, n_jobs=-1, verbose=0)
+    indicators_dict = calculate_atr_vectorized(recent_data)
     
     # Combine dictionary of DataFrames into a single MultiIndex DataFrame
     indicators_df = pd.concat(indicators_dict, axis=1).astype("float32")

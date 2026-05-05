@@ -712,67 +712,67 @@ def _calculate_indicators_for_ticker(ticker, data_matrix):
     ticker_indicators = {}
     
     # Momentum indicators
-    # ticker_indicators['relative_strength_index'] = relative_strength_index(close)
-    # ticker_indicators['williams_r'] = williams_r(high, low, close)
-    # ticker_indicators['rsi'] = relative_strength_index(close)
+    ticker_indicators['relative_strength_index'] = relative_strength_index(close)
+    ticker_indicators['williams_r'] = williams_r(high, low, close)
+    ticker_indicators['rsi'] = relative_strength_index(close)
     
     # Volatility indicators
-    # ticker_indicators['volatility_20'] = volatility_20(close)
-    # ticker_indicators['volatility_60'] = volatility_60(close)
+    ticker_indicators['volatility_20'] = volatility_20(close)
+    ticker_indicators['volatility_60'] = volatility_60(close)
     
     # Trend indicators
-    # ticker_indicators['trend_1_3'] = trend_1_3(close)
-    # ticker_indicators['trend_5_20'] = trend_5_20(close)
-    # ticker_indicators['trend_20_60'] = trend_20_60(close)
+    ticker_indicators['trend_1_3'] = trend_1_3(close)
+    ticker_indicators['trend_5_20'] = trend_5_20(close)
+    ticker_indicators['trend_20_60'] = trend_20_60(close)
     
     # Average True Range
     ticker_indicators['average_true_range'] = average_true_range(high, low, close)
     
     # MACD
-    # macd_line, signal_line, histogram = macd(close)
-    # ticker_indicators['macd'] = macd_line
-    # ticker_indicators['macd_signal'] = signal_line
-    # ticker_indicators['macd_histogram'] = histogram
+    macd_line, signal_line, histogram = macd(close)
+    ticker_indicators['macd'] = macd_line
+    ticker_indicators['macd_signal'] = signal_line
+    ticker_indicators['macd_histogram'] = histogram
     
     # TRIX
-    # ticker_indicators['trix'] = trix(close)
+    ticker_indicators['trix'] = trix(close)
     
     # CCI
-    # ticker_indicators['commodity_channel_index'] = commodity_channel_index(high, low, close)
+    ticker_indicators['commodity_channel_index'] = commodity_channel_index(high, low, close)
     
     # CMO
-    # ticker_indicators['chande_momentum_oscillator'] = chande_momentum_oscillator(close)
+    ticker_indicators['chande_momentum_oscillator'] = chande_momentum_oscillator(close)
     
     # Ichimoku
-    # ichimoku_dict = ichimoku(high, low, close)
-    # ticker_indicators['ichimoku_conversion'] = ichimoku_dict['conversion_line']
-    # ticker_indicators['ichimoku_base'] = ichimoku_dict['base_line']
-    # ticker_indicators['ichimoku_leading_a'] = ichimoku_dict['leading_a']
-    # ticker_indicators['ichimoku_leading_b'] = ichimoku_dict['leading_b']
+    ichimoku_dict = ichimoku(high, low, close)
+    ticker_indicators['ichimoku_conversion'] = ichimoku_dict['conversion_line']
+    ticker_indicators['ichimoku_base'] = ichimoku_dict['base_line']
+    ticker_indicators['ichimoku_leading_a'] = ichimoku_dict['leading_a']
+    ticker_indicators['ichimoku_leading_b'] = ichimoku_dict['leading_b']
     
     # KST
-    # ticker_indicators['know_sure_thing'] = know_sure_thing(close)
+    ticker_indicators['know_sure_thing'] = know_sure_thing(close)
     
     # Ultimate Oscillator
-    # ticker_indicators['ultimate_oscillator'] = ultimate_oscillator(high, low, close)
+    ticker_indicators['ultimate_oscillator'] = ultimate_oscillator(high, low, close)
     
     # Aroon
-    # aroon_dict = aroon(high, low)
-    # ticker_indicators['aroon_up'] = aroon_dict['aroon_up']
-    # ticker_indicators['aroon_down'] = aroon_dict['aroon_down']
-    # ticker_indicators['aroon_oscillator'] = aroon_dict['aroon_oscillator']
+    aroon_dict = aroon(high, low)
+    ticker_indicators['aroon_up'] = aroon_dict['aroon_up']
+    ticker_indicators['aroon_down'] = aroon_dict['aroon_down']
+    ticker_indicators['aroon_oscillator'] = aroon_dict['aroon_oscillator']
     
     # Stochastic
-    # stoch_dict = stochastic_oscillator(high, low, close)
-    # ticker_indicators['stochastic_k'] = stoch_dict['k_percent']
-    # ticker_indicators['stochastic_d'] = stoch_dict['d_percent']
+    stoch_dict = stochastic_oscillator(high, low, close)
+    ticker_indicators['stochastic_k'] = stoch_dict['k_percent']
+    ticker_indicators['stochastic_d'] = stoch_dict['d_percent']
     
     # Volume indicators
-    # ticker_indicators['on_balance_volume'] = on_balance_volume(close, volume)
-    # ticker_indicators['ease_of_movement'] = ease_of_movement(high, low, close, volume)
-    # ticker_indicators['chaikin_money_flow'] = chaikin_money_flow(high, low, close, volume)
-    # ticker_indicators['accumulation_distribution_index'] = accumulation_distribution_index(high, low, close, volume)
-    # ticker_indicators['volume'] = volume_data[ticker]
+    ticker_indicators['on_balance_volume'] = on_balance_volume(close, volume)
+    ticker_indicators['ease_of_movement'] = ease_of_movement(high, low, close, volume)
+    ticker_indicators['chaikin_money_flow'] = chaikin_money_flow(high, low, close, volume)
+    ticker_indicators['accumulation_distribution_index'] = accumulation_distribution_index(high, low, close, volume)
+    ticker_indicators['volume'] = volume_data[ticker]
     
     return ticker, ticker_indicators
 
@@ -1043,3 +1043,20 @@ def load_indicator_from_parquet(indicator_name, directory='stores/indicators'):
     
     return pd.read_parquet(filepath)
 
+
+
+def calculate_atr_vectorized(data_matrix, period=14):
+    """Fully vectorized ATR calculation across all tickers at once."""
+    import numpy as np
+    high = data_matrix['High']
+    low = data_matrix['Low']
+    close = data_matrix['Close']
+    
+    tr1 = high - low
+    tr2 = (high - close.shift()).abs()
+    tr3 = (low - close.shift()).abs()
+    
+    true_range = np.maximum(np.maximum(tr1, tr2), tr3)
+    atr = true_range.rolling(window=period).mean()
+    
+    return {'average_true_range': atr}
