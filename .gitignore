@@ -1,0 +1,15 @@
+# Environments
+.venv QRT/
+__pycache__/
+.ipynb_checkpoints/
+
+# Data and Stores
+stores/
+*.pkl
+*.parquet
+top_5000_yf_data.pkl
+*.csv
+qrt_academy_IND22*.csv
+
+# Temporary files
+*.txt

@@ -1,0 +1,37 @@
+.idea/
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+
+# data cache
+tmp_*/
+
+# playground
+xta_tools/playground.ipynb
+playground.ipynb
+playground_last_month.ipynb
+
+# dask
+dask-worker-space/
+
+xta_tools/scripts/logs/
+
+creds.ini
