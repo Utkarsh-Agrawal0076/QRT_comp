@@ -13,3 +13,4 @@ top_5000_yf_data.pkl
 qrt_academy_IND22*.csv
 # Temporary files
 *.txt
+venv/
