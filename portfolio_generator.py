@@ -113,7 +113,15 @@ def generate_residual_portfolio(csv_path: str = UNIVERSE_CSV,
     #        For each date:  alpha_i = gamma * market_ret + residual_i
     #        We keep only residual_i.
     print("Regressing out market exposure from alpha cross-section ...")
-    last_date = common_idx[-1]
+    
+    # Use data from the day before yesterday
+    from datetime import datetime, timedelta
+    target_date = pd.Timestamp(datetime.now().date() - timedelta(days=2))
+    valid_dates = common_idx[common_idx <= target_date]
+    if len(valid_dates) == 0:
+        raise ValueError("No data available up to the day before yesterday.")
+    last_date = valid_dates[-1]
+    
     alpha_today = raw_alpha.loc[last_date].dropna()
 
     if len(alpha_today) < 20:
@@ -170,13 +178,13 @@ def generate_residual_portfolio(csv_path: str = UNIVERSE_CSV,
     targets = pd.DataFrame()
 
     long_df = pd.DataFrame({
-        "internal_code": long_notionals.index,
+        "internal_code": long_notionals.index.astype(str) + " OQ",
         "currency": "USD",
         "target_notional": long_notionals.values.round(2),
     })
 
     short_df = pd.DataFrame({
-        "internal_code": short_notionals.index,
+        "internal_code": short_notionals.index.astype(str) + " OQ",
         "currency": "USD",
         "target_notional": -short_notionals.values.round(2),
     })
