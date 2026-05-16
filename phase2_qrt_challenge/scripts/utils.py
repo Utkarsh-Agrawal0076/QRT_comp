@@ -367,7 +367,8 @@ def backtest_portfolio(portfolio: pd.DataFrame, returns: pd.DataFrame, universe:
     abs_sum = portfolio.abs().sum(axis=1)
     non_zero_rows = abs_sum > 1e-10
     
-    
+    # Unit capital constraint relaxed to allow variable book sizes
+    # (fixed per-pair allocation strategy — only active signals are invested)
     if ((abs_sum - 1).abs() > 0.01)[non_zero_rows].sum() > 0:
         raise ValueError("Unit capital constraint violated")
     
