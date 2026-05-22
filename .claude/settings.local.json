@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import hmmlearn; print\\(hmmlearn.__version__\\)\")",
+      "Bash(venv/Scripts/python.exe -c \"import hmmlearn, sys; print\\(hmmlearn.__version__, sys.executable\\)\")",
+      "Bash(venv/Scripts/python.exe -c \"import pandas as pd; d=pd.read_pickle\\('top_5000_yf_data.pkl'\\); print\\(type\\(d\\)\\); print\\(d.keys\\(\\) if isinstance\\(d,dict\\) else d.shape if hasattr\\(d,'shape'\\) else d\\); print\\('--'\\); print\\(d['SPY'].head\\(\\) if isinstance\\(d,dict\\) and 'SPY' in d else 'no SPY key'\\)\")",
+      "Bash(venv/Scripts/python.exe -c \"import pandas as pd; d=pd.read_pickle\\('top_5000_yf_data.pkl'\\); print\\(d.columns[:10].tolist\\(\\)\\); print\\('--'\\); print\\(d.index[:3], d.index[-3:]\\); print\\('--'\\); print\\('SPY cols:', [c for c in d.columns if 'SPY' in str\\(c\\)][:10]\\)\")",
+      "Bash(venv/Scripts/python.exe -c \"import yfinance; print\\(yfinance.__version__\\)\")",
+      "Bash(venv/Scripts/python.exe -m pip install hmmlearn)",
+      "Bash(venv/Scripts/python.exe hidden_markov_model/_smoke_test.py)",
+      "Bash(venv/Scripts/python.exe -c ' *)",
+      "Read(//tmp/**)",
+      "Bash(venv/Scripts/python.exe -c \"import pandas as pd; d=pd.read_csv\\('kalman_universe_config.csv'\\); print\\(d.shape\\); print\\(d.columns.tolist\\(\\)\\); print\\(d.head\\(3\\)\\); print\\('spread_vol stats:'\\); print\\(d['spread_vol'].describe\\(\\) if 'spread_vol' in d else ''\\)\")",
+      "Bash(venv/Scripts/python.exe hidden_markov_model/hmm_model.py fit)"
+    ]
+  }
+}
