@@ -7,7 +7,9 @@ __pycache__/
 stores/
 *.pkl
 *.parquet
+*.legacy-bak
 top_5000_yf_data.pkl
+top_5000_yf_data.pkl.legacy-bak
 *.csv
 !top_5000_us_by_marketcap.csv
 qrt_academy_IND22*.csv
