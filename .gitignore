@@ -14,3 +14,4 @@ qrt_academy_IND22*.csv
 # Temporary files
 *.txt
 venv/
+graphify-out/
