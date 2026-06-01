@@ -1,0 +1,150 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 2769 dates x 4999 tickers (2010-01-04 -> 2020-12-31)
+  alpha001: best D10-D10/D1-D5  net -1.73 (naive D10/D1 net -1.95)
+  alpha002: best D9-D10/D1-D5  net -0.01 (naive D10/D1 net -0.42)
+  alpha005: best D8-D10/D1-D1  net +1.04 (naive D10/D1 net +0.80)
+  alpha009: best D8-D10/D1-D1  net -0.00 (naive D10/D1 net -0.64)
+  alpha010: best D8-D10/D1-D4  net -1.09 (naive D10/D1 net -1.57)
+  alpha011: best D10-D10/D1-D5  net +0.56 (naive D10/D1 net +0.16)
+  alpha012: best D8-D10/D1-D1  net +0.29 (naive D10/D1 net -0.39)
+  alpha013: best D10-D10/D1-D5  net +0.23 (naive D10/D1 net +0.09)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha015: best D9-D10/D1-D1  net -0.51 (naive D10/D1 net -0.51)
+  alpha016: best D10-D10/D1-D5  net +0.20 (naive D10/D1 net +0.14)
+  alpha018: best D10-D10/D1-D4  net +0.27 (naive D10/D1 net +0.25)
+  alpha019: best D10-D10/D1-D5  net +0.81 (naive D10/D1 net +0.55)
+  alpha020: best D8-D10/D1-D1  net +0.65 (naive D10/D1 net +0.41)
+  alpha022: best D8-D10/D1-D1  net -0.23 (naive D10/D1 net -0.40)
+  alpha023: best D9-D10/D1-D1  net +0.84 (naive D10/D1 net +0.70)
+  alpha024: best D8-D10/D1-D1  net +1.55 (naive D10/D1 net +1.02)
+  alpha025: best D10-D10/D1-D1  net -0.00 (naive D10/D1 net -0.00)
+  alpha026: best D10-D10/D1-D4  net -0.19 (naive D10/D1 net -0.40)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha027: best D10-D10/D1-D1  net +nan (naive D10/D1 net +nan)
+  alpha030: best D10-D10/D1-D2  net +0.40 (naive D10/D1 net +0.32)
+  alpha033: best D10-D10/D1-D5  net +0.01 (naive D10/D1 net -0.03)
+  alpha034: best D10-D10/D1-D5  net +0.05 (naive D10/D1 net +0.01)
+  alpha035: best D10-D10/D1-D1  net +0.44 (naive D10/D1 net +0.44)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha036: best D10-D10/D1-D5  net -0.52 (naive D10/D1 net -0.79)
+  alpha038: best D10-D10/D1-D1  net +0.45 (naive D10/D1 net +0.45)
+  alpha040: best D8-D10/D1-D1  net +0.14 (naive D10/D1 net +0.14)
+  alpha041: best D8-D10/D1-D1  net +0.68 (naive D10/D1 net +0.24)
+  alpha043: best D10-D10/D1-D5  net +0.52 (naive D10/D1 net +0.19)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha044: best D10-D10/D1-D5  net +0.02 (naive D10/D1 net -0.22)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha050: best D10-D10/D1-D5  net -0.46 (naive D10/D1 net -0.63)
+  alpha053: best D10-D10/D1-D5  net -0.25 (naive D10/D1 net -0.33)
+  alpha054: best D8-D10/D1-D5  net +0.43 (naive D10/D1 net +0.27)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha055: best D10-D10/D1-D5  net -0.16 (naive D10/D1 net -0.72)
+  alpha056: best D10-D10/D1-D5  net +0.24 (naive D10/D1 net +0.19)
+  alpha057: best D8-D10/D1-D1  net +0.52 (naive D10/D1 net +0.26)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha059: best D10-D10/D1-D5  net -0.15 (naive D10/D1 net -0.58)
+  alpha060: best D10-D10/D1-D5  net -0.21 (naive D10/D1 net -0.39)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha067: best D8-D10/D1-D2  net +0.03 (naive D10/D1 net +0.03)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha070: best D8-D10/D1-D3  net -0.25 (naive D10/D1 net -0.83)
+  alpha073: best D10-D10/D1-D1  net +0.58 (naive D10/D1 net +0.58)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha075: best D10-D10/D1-D1  net +nan (naive D10/D1 net +nan)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha078: best D9-D10/D1-D5  net +0.24 (naive D10/D1 net -0.13)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha081: best D10-D10/D1-D1  net +nan (naive D10/D1 net +nan)
+  alpha083: best D8-D10/D1-D1  net +0.61 (naive D10/D1 net +0.24)
+  alpha084: best D10-D10/D1-D3  net +0.34 (naive D10/D1 net +0.18)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha086: best D10-D10/D1-D1  net +0.25 (naive D10/D1 net +0.25)
+  alpha087: best D9-D10/D1-D3  net +0.01 (naive D10/D1 net -0.28)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha099: best D10-D10/D1-D1  net +nan (naive D10/D1 net +nan)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  alpha100: best D10-D10/D1-D5  net +0.99 (naive D10/D1 net +0.67)
+
+==============================================================================
+TRADEABLE ALPHAS by best-design NET Sharpe (cell-14 methodology, T+1)
+==============================================================================
+   alpha best_long best_short  gross_Sh  net_Sh  turn_%  annret_%  naive_D10D1_net
+alpha024    D8-D10      D1-D1      1.95    1.55    25.0       8.6             1.02
+alpha005    D8-D10      D1-D1      1.60    1.04    55.0       9.2             0.80
+alpha100   D10-D10      D1-D5      1.83    0.99    64.0       8.1             0.67
+alpha023    D9-D10      D1-D1      1.73    0.84    79.0       8.7             0.70
+alpha019   D10-D10      D1-D5      1.29    0.81    40.0       6.7             0.55
+alpha041    D8-D10      D1-D1      1.56    0.68    82.0       8.3             0.24
+alpha020    D8-D10      D1-D1      1.64    0.65    84.0       7.8             0.41
+alpha083    D8-D10      D1-D1      1.56    0.61    83.0       7.6             0.24
+alpha073   D10-D10      D1-D1      1.35    0.58    79.0       7.8             0.58
+alpha011   D10-D10      D1-D5      1.57    0.56    75.0       6.6             0.16
+alpha057    D8-D10      D1-D1      1.46    0.52    82.0       7.2             0.26
+alpha043   D10-D10      D1-D5      1.20    0.52    54.0       5.7             0.19
+alpha038   D10-D10      D1-D1      1.01    0.45    88.0       8.9             0.45
+alpha035   D10-D10      D1-D1      1.05    0.44    77.0       7.6             0.44
+alpha054    D8-D10      D1-D5      1.56    0.43    64.0       5.1             0.27
+alpha030   D10-D10      D1-D2      1.07    0.40    64.0       6.0             0.32
+alpha084   D10-D10      D1-D3      0.80    0.34   123.0       0.5             0.18
+alpha012    D8-D10      D1-D1      1.60    0.29    78.0       5.4            -0.39
+alpha018   D10-D10      D1-D4      1.02    0.27    63.0       5.1             0.25
+alpha086   D10-D10      D1-D1      0.92    0.25   174.0       0.7             0.25
+alpha056   D10-D10      D1-D5      1.29    0.24    79.0       5.5             0.19
+alpha078    D9-D10      D1-D5      1.11    0.24    31.0       2.6            -0.13
+alpha013   D10-D10      D1-D5      1.18    0.23    51.0       3.8             0.09
+alpha016   D10-D10      D1-D5      1.24    0.20    54.0       3.8             0.14
+alpha040    D8-D10      D1-D1      0.74    0.14    37.0       2.9             0.14
+alpha034   D10-D10      D1-D5      1.15    0.05    86.0       5.1             0.01
+alpha067    D8-D10      D1-D2      1.13    0.03    63.0       3.8             0.03
+alpha044   D10-D10      D1-D5      1.31    0.02    56.0       3.4            -0.22
+alpha087    D9-D10      D1-D3      0.91    0.01    53.0       3.2            -0.28
+alpha033   D10-D10      D1-D5      0.67    0.01    83.0       4.7            -0.03
+alpha009    D8-D10      D1-D1      0.97   -0.00    86.0       4.8            -0.64
+alpha025   D10-D10      D1-D1      0.91   -0.00   111.0       6.1            -0.00
+alpha002    D9-D10      D1-D5      1.22   -0.01    35.0       2.2            -0.42
+alpha059   D10-D10      D1-D5      1.40   -0.15    51.0       2.8            -0.58
+alpha055   D10-D10      D1-D5      1.34   -0.16    47.0       2.6            -0.72
+alpha026   D10-D10      D1-D4      0.84   -0.19    48.0       2.4            -0.40
+alpha060   D10-D10      D1-D5      0.83   -0.21    79.0       3.6            -0.39
+alpha022    D8-D10      D1-D1      1.14   -0.23    65.0       3.1            -0.40
+alpha053   D10-D10      D1-D5      0.87   -0.25    71.0       3.1            -0.33
+alpha070    D8-D10      D1-D3      0.80   -0.25    43.0       2.0            -0.83
+alpha050   D10-D10      D1-D5      0.64   -0.46    36.0       1.3            -0.63
+alpha015    D9-D10      D1-D1      0.91   -0.51    65.0       2.4            -0.51
+alpha036   D10-D10      D1-D5      0.48   -0.52    44.0       1.3            -0.79
+alpha010    D8-D10      D1-D4      0.22   -1.09    78.0       0.8            -1.57
+alpha001   D10-D10      D1-D5     -0.83   -1.73    85.0      -4.1            -1.95
+alpha027   D10-D10      D1-D1       NaN     NaN     NaN       NaN              NaN
+alpha075   D10-D10      D1-D1       NaN     NaN     NaN       NaN              NaN
+alpha081   D10-D10      D1-D1       NaN     NaN     NaN       NaN              NaN
+alpha099   D10-D10      D1-D1       NaN     NaN     NaN       NaN              NaN
+
+Net-tradeable (net Sharpe >= 0.5): 12 alphas
+['alpha024', 'alpha005', 'alpha100', 'alpha023', 'alpha019', 'alpha041', 'alpha020', 'alpha083', 'alpha073', 'alpha011', 'alpha057', 'alpha043']
+
+REVIVED by proper bucket design (good now, dead under naive D10/D1): ['alpha041', 'alpha083', 'alpha011', 'alpha057', 'alpha043']
+
+Saved alpha101_results/bucket_enum.csv

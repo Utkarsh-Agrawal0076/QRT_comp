@@ -1,0 +1,26 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 2769 dates x 4999 tickers (2010-01-04 -> 2020-12-31)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+alpha044: SHORT D[1]  | hysteresis D[2, 3, 4, 5, 6, 7, 8, 9] | LONG D[10]
+alpha024: SHORT D[1, 2, 3, 4]  | hysteresis D[5, 6, 7, 10] | LONG D[8, 9]
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+alpha055: SHORT D[]  | hysteresis D[1, 2, 3, 4, 5, 6, 7, 8, 9, 10] | LONG D[]
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+alpha078: SHORT D[1, 2]  | hysteresis D[3, 4, 5, 6, 7, 8, 9] | LONG D[10]
+alpha022: SHORT D[1, 2]  | hysteresis D[3, 4, 5, 6, 7, 8, 9, 10] | LONG D[]
+alpha084: SHORT D[1, 2, 3]  | hysteresis D[4, 5, 6, 7, 8, 9, 10] | LONG D[]
+alpha023: SHORT D[1]  | hysteresis D[2, 3, 4, 5, 6, 7, 8, 10] | LONG D[9]
+alpha005: SHORT D[1, 2]  | hysteresis D[3, 4, 5, 6, 7, 9, 10] | LONG D[8]
+alpha040: SHORT D[1]  | hysteresis D[2, 3, 4, 5, 6, 7, 8, 9, 10] | LONG D[]
+alpha083: SHORT D[1, 2, 3]  | hysteresis D[4, 5, 6, 7, 8, 9, 10] | LONG D[]
+alpha030: SHORT D[1, 2, 3]  | hysteresis D[4, 5, 6, 7, 8, 9] | LONG D[10]
+alpha073: SHORT D[1, 2, 3, 6]  | hysteresis D[4, 5, 7, 8, 9, 10] | LONG D[]
+
+Saved alpha101_results/decile_charts_core.png and decile_buckets_core.json

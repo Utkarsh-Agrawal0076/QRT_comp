@@ -1,9 +1,16 @@
 """
 generate_submission.py — Standalone Portfolio Generator for QRT Academy
 =======================================================================
-Fetches data from Yahoo Finance (via cached pickle), runs all three strategies
+Fetches data from Yahoo Finance (via cached pickle), runs all strategies
 at their correct rebalance frequencies, blends via inverse-volatility,
 enforces all QRT constraints, and outputs a submission-ready CSV.
+
+The reversal book is a super-sleeve: an inverse-vol blend of Alpha#11 (the
+original mean-reversion sleeve) with three formulaic alphas from the 101-alpha
+study (Alpha#24/#41/#100, traded with asymmetric hysteresis bands). The final
+book is an equal-vol (inverse-vol) blend of {Reversal super-sleeve, Momentum,
+Stat-Arb} — Momentum (weekly W-FRI) and Stat-Arb (Kalman warm-start) are
+unchanged.
 
 Usage:  python generate_submission.py
 """
@@ -17,6 +24,16 @@ import warnings
 from datetime import datetime
 
 warnings.filterwarnings("ignore")
+
+# Formulaic-alpha library (101-alpha study). Guarded so the pipeline still runs
+# (reversal = Alpha#11 only) if the package or its deps are unavailable.
+try:
+    from alpha101.data import Data as _AlphaData
+    from alpha101.alphas import get_alpha as _get_alpha
+    _ALPHA101_OK = True
+except Exception as _e:  # pragma: no cover
+    _ALPHA101_OK = False
+    _ALPHA101_ERR = str(_e)
 
 # ============================================================================
 # CONFIGURATION
@@ -36,6 +53,16 @@ MOM_SHORT_EXIT    = 0.25
 ALPHA_SECTORS = {
     'Technology', 'Energy', 'Consumer Discretionary', 'Consumer Staples',
     'Basic Materials', 'Industrials', 'Real Estate', 'Telecommunications',
+}
+
+# Formulaic-alpha reversal sleeves (101-alpha study). Each trades with asymmetric
+# hysteresis bands: (long_enter, long_exit, short_enter, short_exit) in pct-rank.
+NEW_ALPHAS   = [24, 41, 100]
+ALPHA_SMOOTH = 3
+ALPHA_DESIGNS = {
+    24:  dict(le=0.70, lx=0.60, se=0.10, sx=0.20),   # long D8-D10 (buf D7), short D1 (buf D2)
+    41:  dict(le=0.70, lx=0.60, se=0.10, sx=0.20),   # long D8-D10 (buf D7), short D1 (buf D2)
+    100: dict(le=0.90, lx=0.80, se=0.50, sx=0.50),   # long D10 (buf D9), short D1-D5
 }
 
 # Data + state persistence
@@ -269,6 +296,124 @@ def run_mean_reversion(df_hist, returns, universe, df_adv_60):
     weights = enforce_post_shift_strict_gmv(weights, universe)
     print("  Mean Reversion complete.")
     return weights
+
+
+# ============================================================================
+# STEP 2b: FORMULAIC-ALPHA SLEEVES + REVERSAL SUPER-SLEEVE
+# ============================================================================
+def build_alpha_data(df_hist, returns):
+    """Assemble the alpha101 Data panel from the (daily-refreshed) pickle."""
+    o, h, l = dedup(df_hist["Open"]), dedup(df_hist["High"]), dedup(df_hist["Low"])
+    c, v = dedup(df_hist["Close"]), dedup(df_hist["Volume"])
+    vwap = (h + l + c) / 3.0
+    meta = pd.read_csv("top_5000_us_by_marketcap.csv")
+    meta["symbol"] = meta["symbol"].astype(str).str.replace("/", "-")
+    meta = meta.drop_duplicates("symbol").set_index("symbol")
+    cap = pd.to_numeric(meta["marketCap"], errors="coerce").reindex(c.columns)
+    sector = meta["sector"].reindex(c.columns)
+    industry = meta["industry"].reindex(c.columns)
+    rets = returns.reindex(index=c.index, columns=c.columns).fillna(0)
+    # subindustry falls back to industry (no finer classification available)
+    return _AlphaData(o, h, l, c, v, vwap, rets, cap, sector, industry, industry)
+
+
+def _alpha_bucket_rank(sig, universe):
+    """3-day smooth -> cross-sectional demean -> pct rank (matches the study)."""
+    s = sig.replace([np.inf, -np.inf], np.nan).rolling(ALPHA_SMOOTH, min_periods=1).mean()
+    s = s.where(universe.astype(bool))
+    s = s.sub(s.mean(axis=1), axis=0)
+    return s.rank(axis=1, pct=True)
+
+
+def _hysteresis_state(rp, le, lx, se, sx):
+    """Stateful per-stock long(+1)/short(-1)/flat(0): enter on core, hold through buffer."""
+    R = rp.values
+    T, N = R.shape
+    state = np.zeros(N)
+    out = np.zeros((T, N))
+    for t in range(T):
+        r = R[t]
+        valid = ~np.isnan(r)
+        new = np.zeros(N)
+        new[(state == 1) & valid & (r >= lx)] = 1     # hold long through buffer
+        new[(state == -1) & valid & (r < sx)] = -1    # hold short through buffer
+        new[valid & (r >= le)] = 1                    # fresh long entry
+        new[valid & (r < se)] = -1                    # fresh short entry
+        state = new
+        out[t] = new
+    return pd.DataFrame(out, index=rp.index, columns=rp.columns)
+
+
+def run_alpha_sleeve(adata, universe, n):
+    """One formulaic-alpha sleeve: signal -> hysteresis -> dollar-neutral T+1 weights."""
+    sig = _get_alpha(n)(adata)
+    rp = _alpha_bucket_rank(sig, universe)
+    state = _hysteresis_state(rp, **ALPHA_DESIGNS[n]).astype(float)
+    longs = (state > 0).astype(float)
+    shorts = (state < 0).astype(float)
+    w = (longs.div(longs.sum(axis=1).replace(0, np.nan), axis=0) * 0.5
+         - shorts.div(shorts.sum(axis=1).replace(0, np.nan), axis=0) * 0.5).fillna(0)
+    w = dedup(w.shift(1).fillna(0))
+    return enforce_post_shift_strict_gmv(w, universe)
+
+
+def inverse_vol_blend(sleeves, returns, universe, label="blend"):
+    """Inverse-vol (equal-risk) blend of dollar-neutral sleeves -> GMV=1 book.
+
+    Same construction as Step 5: 60-day rolling vol, inverse-vol allocation shifted
+    one day (causal), combine weight matrices (internal netting), renormalize each
+    book to 0.5 and water-fill to GMV=1 / max-weight<10%.
+    """
+    def rolling_vol(w):
+        ar = returns.reindex(index=w.index, columns=w.columns).fillna(0)
+        pnl = (w * ar).sum(axis=1)
+        return (pnl.rolling(60, min_periods=20).std() * np.sqrt(252)).clip(lower=0.05)
+
+    inv = {k: 1.0 / rolling_vol(w) for k, w in sleeves.items()}
+    total = sum(inv.values())
+    blended = None
+    for k, w in sleeves.items():
+        c = (inv[k] / total).shift(1).fillna(1.0 / len(sleeves))
+        contrib = w.multiply(c, axis=0)
+        blended = contrib if blended is None else blended.add(contrib, fill_value=0)
+
+    el = blended.where(blended > 0, 0)
+    es = blended.where(blended < 0, 0).abs()
+    final = (normalize_and_cap(el) - normalize_and_cap(es)).fillna(0)
+    final = enforce_post_shift_strict_gmv(final, universe)
+
+    latest = {k: float((inv[k] / total).iloc[-1]) for k in sleeves}
+    print(f"  {label} latest sleeve weights: "
+          + ", ".join(f"{k}={latest[k]:.1%}" for k in sleeves))
+    return final
+
+
+def build_reversal_supersleeve(w_mr, df_hist, returns, universe):
+    """Reversal super-sleeve = inverse-vol blend of Alpha#11 + Alpha#24/#41/#100.
+
+    Falls back to Alpha#11 alone if the alpha101 package is unavailable, so the
+    pipeline never breaks.
+    """
+    print("\n" + "=" * 60)
+    print("STEP 2b: Reversal Super-Sleeve (Alpha#11 + Alpha#24/#41/#100)")
+    print("=" * 60)
+
+    if not _ALPHA101_OK:
+        print(f"  WARNING: alpha101 unavailable ({_ALPHA101_ERR}); "
+              f"reversal book = Alpha#11 only.")
+        return w_mr
+
+    adata = build_alpha_data(df_hist, returns)
+    sleeves = {"A11": w_mr}
+    for n in NEW_ALPHAS:
+        print(f"  Building Alpha#{n} sleeve (hysteresis)...")
+        sleeves[f"A{n}"] = run_alpha_sleeve(adata, universe, n)
+
+    # align all reversal sleeves to a common grid
+    cols, idx = w_mr.columns, w_mr.index
+    sleeves = {k: dedup(w).reindex(index=idx, columns=cols).fillna(0) for k, w in sleeves.items()}
+    uni = dedup(universe).reindex(index=idx, columns=cols).fillna(0)
+    return inverse_vol_blend(sleeves, returns, uni, label="Reversal")
 
 
 # ============================================================================
@@ -620,9 +765,11 @@ def run_stat_arb(df_hist, universe):
 # ============================================================================
 # STEP 5: INVERSE-VOLATILITY ENSEMBLE BLENDING
 # ============================================================================
-def blend_ensemble(w_mr, w_mom, w_sa, returns, universe):
+def blend_ensemble(w_rev, w_mom, w_sa, returns, universe):
+    """Equal-vol (inverse-vol) blend across the three styles:
+    {Reversal super-sleeve, Momentum, Stat-Arb}."""
     print("\n" + "=" * 60)
-    print("STEP 5: Inverse-Volatility Ensemble Blending")
+    print("STEP 5: Equal-Vol Ensemble Blending {Reversal, Mom, StatArb}")
     print("=" * 60)
 
     def rolling_vol(weights, rets, window=60):
@@ -630,22 +777,22 @@ def blend_ensemble(w_mr, w_mom, w_sa, returns, universe):
         pnl = (weights * ar).sum(axis=1)
         return (pnl.rolling(window, min_periods=20).std() * np.sqrt(252)).clip(lower=0.05)
 
-    vol_mr = rolling_vol(w_mr, returns)
+    vol_rev = rolling_vol(w_rev, returns)
     vol_mom = rolling_vol(w_mom, returns)
     vol_sa = rolling_vol(w_sa, returns)
 
-    inv_mr, inv_mom, inv_sa = 1/vol_mr, 1/vol_mom, 1/vol_sa
-    total = inv_mr + inv_mom + inv_sa
+    inv_rev, inv_mom, inv_sa = 1/vol_rev, 1/vol_mom, 1/vol_sa
+    total = inv_rev + inv_mom + inv_sa
 
     # Shift by 1 to prevent lookahead
-    c_mr  = (inv_mr / total).shift(1).fillna(1/3)
+    c_rev = (inv_rev / total).shift(1).fillna(1/3)
     c_mom = (inv_mom / total).shift(1).fillna(1/3)
     c_sa  = (inv_sa / total).shift(1).fillna(1/3)
 
-    print(f"  Latest allocations: MR={c_mr.iloc[-1]:.1%}, "
+    print(f"  Latest allocations: Reversal={c_rev.iloc[-1]:.1%}, "
           f"Mom={c_mom.iloc[-1]:.1%}, SA={c_sa.iloc[-1]:.1%}")
 
-    ensemble = (w_mr.multiply(c_mr, axis=0)
+    ensemble = (w_rev.multiply(c_rev, axis=0)
               + w_mom.multiply(c_mom, axis=0)
               + w_sa.multiply(c_sa, axis=0))
 
@@ -730,25 +877,30 @@ def generate_csv(targets):
     print("STEP 7: Generating Submission CSV")
     print("=" * 60)
 
-    # Load exchange map from QRT report
-    ric_map = {}
-    if os.path.exists("ric_exchange_map.csv"):
-        ric_df = pd.read_csv("ric_exchange_map.csv", index_col=0)
-        ric_map = ric_df["ric"].to_dict()
-        print(f"  Loaded exchange map: {len(ric_map)} tickers")
+    # Robust RIC resolution: map -> yfinance fallback (cached) -> exclude unresolved.
+    # We never silently default to .OQ: a wrong suffix is silently rejected by QRT,
+    # which previously dropped ~58% of the book (all NYSE/AMEX names sent as .OQ).
+    from ric_resolver import resolve as resolve_rics
+    codes_map, unresolved = resolve_rics(list(targets.index),
+                                         ric_map_csv="ric_exchange_map.csv",
+                                         allow_fetch=True)
 
-    # Map each ticker to its correct RIC code
-    codes = []
-    unmapped = []
-    for ticker in targets.index:
-        if ticker in ric_map:
-            codes.append(ric_map[ticker])
-        else:
-            codes.append(f"{ticker}.OQ")  # Default to NASDAQ
-            unmapped.append(ticker)
+    if unresolved:
+        print(f"  EXCLUDING {len(unresolved)} unresolved ticker(s) from submission "
+              f"(no valid RIC): {unresolved[:20]}")
+        targets = targets.drop(index=unresolved)
+        # Excluding names breaks dollar-neutrality slightly; rebalance long/short books.
+        net = targets.sum()
+        longs, shorts = targets[targets > 0], targets[targets < 0]
+        if abs(net) > 1.0 and len(longs) > 0 and len(shorts) > 0:
+            if net > 0:
+                longs = longs * (longs.sum() - net) / longs.sum()
+            else:
+                shorts = shorts * (shorts.abs().sum() + net) / shorts.abs().sum()
+            targets = pd.concat([longs, shorts])
+            print(f"  Re-neutralized after exclusion: net=${targets.sum():,.2f}")
 
-    if unmapped:
-        print(f"  WARNING: {len(unmapped)} tickers not in exchange map (defaulting to .OQ)")
+    codes = [codes_map[t] for t in targets.index]
 
     submission = pd.DataFrame({
         "internal_code": codes,
@@ -782,29 +934,32 @@ def main():
     # Step 1
     df_hist, returns, universe, df_adv_60 = load_data()
 
-    # Step 2
+    # Step 2: mean reversion (Alpha#11)
     w_mr = run_mean_reversion(df_hist, returns, universe, df_adv_60)
 
-    # Step 3
+    # Step 2b: reversal super-sleeve (Alpha#11 + Alpha#24/#41/#100)
+    w_rev = build_reversal_supersleeve(w_mr, df_hist, returns, universe)
+
+    # Step 3: momentum (weekly W-FRI — UNCHANGED)
     w_mom = run_momentum(df_hist, returns, universe)
 
-    # Step 4
+    # Step 4: stat-arb (Kalman warm-start — UNCHANGED)
     w_sa = run_stat_arb(df_hist, universe)
     if w_sa is None:
         print("  Creating zero Stat-Arb weights as fallback.")
-        w_sa = pd.DataFrame(0.0, index=w_mr.index, columns=w_mr.columns)
+        w_sa = pd.DataFrame(0.0, index=w_rev.index, columns=w_rev.columns)
 
-    # Align all strategies
-    common_cols = w_mr.columns.intersection(w_mom.columns).intersection(w_sa.columns)
-    common_idx = w_mr.index.intersection(w_mom.index).intersection(w_sa.index)
-    w_mr = w_mr.reindex(index=common_idx, columns=common_cols).fillna(0)
+    # Align all three styles
+    common_cols = w_rev.columns.intersection(w_mom.columns).intersection(w_sa.columns)
+    common_idx = w_rev.index.intersection(w_mom.index).intersection(w_sa.index)
+    w_rev = w_rev.reindex(index=common_idx, columns=common_cols).fillna(0)
     w_mom = w_mom.reindex(index=common_idx, columns=common_cols).fillna(0)
     w_sa = w_sa.reindex(index=common_idx, columns=common_cols).fillna(0)
     universe_aligned = universe.reindex(index=common_idx, columns=common_cols).fillna(0)
     returns_aligned = returns.reindex(index=common_idx, columns=common_cols).fillna(0)
 
-    # Step 5
-    ensemble = blend_ensemble(w_mr, w_mom, w_sa, returns_aligned, universe_aligned)
+    # Step 5: equal-vol blend {Reversal, Mom, StatArb}
+    ensemble = blend_ensemble(w_rev, w_mom, w_sa, returns_aligned, universe_aligned)
 
     # Step 6
     targets = scale_and_enforce(ensemble, returns_aligned, df_adv_60)

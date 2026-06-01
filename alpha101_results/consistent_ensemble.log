@@ -1,0 +1,15 @@
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+
+  legend: g=gross n=net | full / 1y=trailing252 / IS<=2020 / OOS>=2021
+
+  LIVE-3         | g.full  1.45 n.full  0.67 | g.1y  2.63 n.1y  1.84 | n.IS  0.56 n.OOS  0.92
+  LIVE+a024      | g.full  2.04 n.full  1.30 | g.1y  2.32 n.1y  1.73 | n.IS  1.37 n.OOS  1.21
+  HIER           | g.full  2.33 n.full  1.48 | g.1y  2.22 n.1y  1.55 | n.IS  1.53 n.OOS  1.39
+
+  risk contribution per style (net pnl):
+    full: Reversal= 50%  Mom=  7%  SA= 43%
+    OOS : Reversal= 62%  Mom=  5%  SA= 33%

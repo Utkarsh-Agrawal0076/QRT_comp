@@ -1,0 +1,31 @@
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+
+================= HEADLINE (gross & net Sharpe) =================
+  LIVE-3       | gross: full 1.45 IS 1.32 OOS 1.72 1y 2.63  | net: full 0.67 IS 0.56 OOS 0.92 1y 1.84
+  FINAL eqvol  | gross: full 1.77 IS 1.73 OOS 1.87 1y 2.41  | net: full 1.19 IS 1.16 OOS 1.27 1y 1.85
+
+================= PER-YEAR TEARSHEET =================
+   year | LIVE net% LIVE Sh | FINAL net% FINAL Sh | FINAL gross%
+   2010 |      1.8%    0.93 |       4.5%     1.97 |         6.6%
+   2011 |      4.2%    1.73 |       4.8%     1.68 |         7.0%
+   2012 |      1.0%    0.52 |       2.7%     1.29 |         4.9%
+   2013 |      2.1%    1.06 |       3.2%     1.55 |         5.3%
+   2014 |      1.5%    0.75 |       1.7%     0.72 |         3.7%
+   2015 |      1.4%    0.65 |       2.4%     1.00 |         4.5%
+   2016 |     -1.5%   -0.74 |       0.6%     0.27 |         2.7%
+   2017 |      1.4%    0.74 |       2.3%     1.10 |         4.3%
+   2018 |     -0.4%   -0.20 |       1.0%     0.47 |         3.1%
+   2019 |      1.4%    0.66 |       1.0%     0.46 |         3.1%
+   2020 |      6.0%    0.75 |      23.3%     2.29 |        25.7%
+   2021 |      1.8%    0.45 |       2.8%     0.67 |         4.8% *OOS
+   2022 |      1.1%    0.38 |       2.8%     0.89 |         4.9% *OOS
+   2023 |      3.5%    1.66 |       3.6%     1.57 |         5.7% *OOS
+   2024 |      0.9%    0.40 |       1.9%     0.80 |         4.0% *OOS
+   2025 |      4.6%    1.56 |       8.7%     1.98 |        10.8% *OOS
+   2026 |      2.7%    2.05 |       3.7%     2.28 |         4.5% *OOS
+
+Saved FINAL_ensemble_weights.parquet, FINAL_reversal_supersleeve.parquet, FINAL_alpha0{24,41,100}_weights.parquet

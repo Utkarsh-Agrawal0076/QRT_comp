@@ -1,0 +1,24 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 4117 dates x 4999 tickers (2010-01-04 -> 2026-05-15)
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+
+========== ALLOCATION COMPARISON (net Sharpe) ==========
+  BASE-prod {MR,Mom,SA,Res}    IS  0.76 | OOS  0.64 | full  0.71 | maxDD -10.6%
+  BASE-naive flat 7-sleeve     IS  1.38 | OOS  1.01 | full  1.23 | maxDD  -9.4%
+  HIER Sharpe-tilt+cap         IS  1.26 | OOS  1.20 | full  1.24 | maxDD  -6.2%
+
+========== RISK CONTRIBUTION PER STYLE ==========
+    risk contribution [IS 2010-2020]: Reversal=  35%  Mom=  33%  SA=  32%
+    risk contribution [OOS 2021+]: Reversal=  61%  Mom=   5%  SA=  34%
+
+  (naive flat 7-sleeve, for contrast — reversal = MR+ResMR+a024+a041+a100)
+    risk contribution [IS 2010-2020]: Reversal=  90%  Mom=   5%  SA=   5%
+    risk contribution [OOS 2021+]: Reversal=  87%  Mom=  11%  SA=   1%
+
+Saved portfolio_hier_net_pnl.csv

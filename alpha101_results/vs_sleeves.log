@@ -1,0 +1,52 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 4117 dates x 4999 tickers (2010-01-04 -> 2026-05-15)
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+  built alpha043
+
+===== FULL 2010-2026 daily PnL correlation =====
+          a024  a041  a100  a043  ENS4  MR(=a11)   Mom  StatArb  ResMR
+a024      1.00  0.46  0.37  0.41  0.73      0.44  0.29     0.07   0.51
+a041      0.46  1.00  0.55  0.52  0.84      0.62 -0.14     0.11   0.48
+a100      0.37  0.55  1.00  0.34  0.73      0.51 -0.08     0.13   0.31
+a043      0.41  0.52  0.34  1.00  0.75      0.67  0.02     0.12   0.68
+ENS4      0.73  0.84  0.73  0.75  1.00      0.74  0.01     0.14   0.65
+MR(=a11)  0.44  0.62  0.51  0.67  0.74      1.00 -0.06     0.15   0.57
+Mom       0.29 -0.14 -0.08  0.02  0.01     -0.06  1.00    -0.16  -0.00
+StatArb   0.07  0.11  0.13  0.12  0.14      0.15 -0.16     1.00   0.15
+ResMR     0.51  0.48  0.31  0.68  0.65      0.57 -0.00     0.15   1.00
+
+  FULL 2010-2026: new-sleeve vs live-sleeve correlations
+      MR(=a11)   Mom  StatArb  ResMR
+a024      0.44  0.29     0.07   0.51
+a041      0.62 -0.14     0.11   0.48
+a100      0.51 -0.08     0.13   0.31
+a043      0.67  0.02     0.12   0.68
+ENS4      0.74  0.01     0.14   0.65
+
+===== OOS 2021+ daily PnL correlation =====
+          a024  a041  a100  a043  ENS4  MR(=a11)   Mom  StatArb  ResMR
+a024      1.00  0.44  0.34  0.37  0.73      0.38  0.38     0.00   0.51
+a041      0.44  1.00  0.40  0.43  0.79      0.53 -0.05     0.01   0.42
+a100      0.34  0.40  1.00  0.19  0.66      0.37  0.05     0.05   0.20
+a043      0.37  0.43  0.19  1.00  0.69      0.66 -0.05     0.08   0.62
+ENS4      0.73  0.79  0.66  0.69  1.00      0.68  0.10     0.05   0.60
+MR(=a11)  0.38  0.53  0.37  0.66  0.68      1.00 -0.04     0.08   0.52
+Mom       0.38 -0.05  0.05 -0.05  0.10     -0.04  1.00    -0.23  -0.01
+StatArb   0.00  0.01  0.05  0.08  0.05      0.08 -0.23     1.00   0.12
+ResMR     0.51  0.42  0.20  0.62  0.60      0.52 -0.01     0.12   1.00
+
+  OOS 2021+: new-sleeve vs live-sleeve correlations
+      MR(=a11)   Mom  StatArb  ResMR
+a024      0.38  0.38     0.00   0.51
+a041      0.53 -0.05     0.01   0.42
+a100      0.37  0.05     0.05   0.20
+a043      0.66 -0.05     0.08   0.62
+ENS4      0.68  0.10     0.05   0.60
+
+Saved vs_sleeves_corr_full.csv

@@ -1,0 +1,95 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 2769 dates x 4999 tickers (2010-01-04 -> 2020-12-31)
+EW-universe ann ret 18.1% | SPY ann ret 14.4% (both strongly positive => bull sample)
+
+Building beta-residual returns vs EW and vs SPY...
+=== alpha044  IC +0.0085 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):       5.6   6.0   6.0   6.1   6.6   7.1   6.4   7.0   7.3   8.9
+  resid-EW(bps):     -1.5  -0.9  -0.9  -0.9  -0.7   0.0  -0.9   0.1   0.3   2.1
+  resid-SPY(bps):    -1.1  -0.5  -0.4  -0.5  -0.3   0.5  -0.4   0.5   0.7   2.5
+  avg SPY-beta:      1.10  1.09  1.09  1.09  1.08  1.08  1.08  1.08  1.08  1.08
+  RAW      : D10-D1 Sharpe +1.04 | mono +0.94 | net L/S SPY-beta -0.02
+  resid-EW : D10-D1 Sharpe +1.10 | mono +0.88
+  resid-SPY: D10-D1 Sharpe +1.11 | mono +0.93
+  --> mono raw +0.94 -> EW +0.88 / SPY +0.93   [NOT beta - real tail effect]
+
+=== alpha016  IC +0.0094 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):       6.7   5.7   5.8   6.0   6.1   6.5  11.2   6.4   7.7   9.5
+  resid-EW(bps):     -0.5  -1.7  -1.4  -0.7  -0.6  -0.2   5.1  -0.6   0.5   1.9
+  resid-SPY(bps):    -0.1  -1.1  -0.9  -0.3  -0.2  -0.0   5.1  -0.2   1.0   2.7
+  avg SPY-beta:      1.15  1.11  1.09  1.07  1.06  1.06  1.05  1.06  1.08  1.12
+  RAW      : D10-D1 Sharpe +0.73 | mono +0.64 | net L/S SPY-beta -0.03
+  resid-EW : D10-D1 Sharpe +0.64 | mono +0.66
+  resid-SPY: D10-D1 Sharpe +0.71 | mono +0.66
+  --> mono raw +0.64 -> EW +0.66 / SPY +0.66   [NOT beta - real tail effect]
+
+=== alpha024  IC +0.0082 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):       3.1   4.8   5.1   4.7   6.8   6.6  12.3   9.0   9.1   8.6
+  resid-EW(bps):     -4.5  -2.1  -1.8  -1.8  -0.9  -0.5   5.4   2.2   2.9   3.1
+  resid-SPY(bps):    -3.8  -1.5  -1.2  -1.3  -0.2  -0.2   5.7   2.6   3.1   2.8
+  avg SPY-beta:      1.12  1.09  1.09  1.09  1.09  1.09  1.08  1.07  1.06  1.06
+  RAW      : D10-D1 Sharpe +1.24 | mono +0.84 | net L/S SPY-beta -0.06
+  resid-EW : D10-D1 Sharpe +1.83 | mono +0.92
+  resid-SPY: D10-D1 Sharpe +1.53 | mono +0.89
+  --> mono raw +0.84 -> EW +0.92 / SPY +0.89   [NOT beta - real tail effect]
+
+=== alpha015  IC +0.0076 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):      11.0   5.1   6.0   6.3   6.8   6.7   6.9   7.3   7.3   8.4
+  resid-EW(bps):      4.3  -1.8  -1.1  -0.6  -0.3  -0.4   0.1   0.0   0.3   1.4
+  resid-SPY(bps):     4.7  -1.3  -0.7  -0.2   0.1   0.0   0.4   0.5   0.8   1.7
+  avg SPY-beta:      1.10  1.09  1.09  1.09  1.09  1.08  1.08  1.08  1.08  1.07
+  RAW      : D10-D1 Sharpe -0.17 | mono +0.44 | net L/S SPY-beta -0.03
+  resid-EW : D10-D1 Sharpe -0.18 | mono +0.43
+  resid-SPY: D10-D1 Sharpe -0.18 | mono +0.44
+  --> mono raw +0.44 -> EW +0.43 / SPY +0.44   [NOT beta - real tail effect]
+
+=== alpha050  IC +0.0050 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):      11.8   5.9   6.0   6.7   6.3   6.7   6.5   7.0   7.3   7.5
+  resid-EW(bps):      5.3  -1.2  -0.9  -0.4  -0.6  -0.5  -0.6   0.2   0.1   0.5
+  resid-SPY(bps):     5.6  -0.7  -0.6   0.1  -0.2   0.0  -0.2   0.5   0.5   0.9
+  avg SPY-beta:      1.10  1.10  1.09  1.09  1.08  1.08  1.08  1.08  1.08  1.08
+  RAW      : D10-D1 Sharpe -0.28 | mono +0.37 | net L/S SPY-beta -0.02
+  resid-EW : D10-D1 Sharpe -0.30 | mono +0.36
+  resid-SPY: D10-D1 Sharpe -0.30 | mono +0.37
+  --> mono raw +0.37 -> EW +0.36 / SPY +0.37   [NOT beta - real tail effect]
+
+=== alpha011  IC +0.0065 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):      10.7   5.8   5.2   5.0   5.3   6.1   5.9   7.6   7.8  12.3
+  resid-EW(bps):      3.5  -1.6  -1.9  -2.2  -1.4  -1.0  -1.2   0.8   0.9   5.9
+  resid-SPY(bps):     4.0  -1.0  -1.3  -1.7  -1.0  -0.5  -0.9   1.2   1.3   6.0
+  avg SPY-beta:      1.11  1.09  1.08  1.08  1.07  1.07  1.08  1.09  1.10  1.09
+  RAW      : D10-D1 Sharpe +0.10 | mono +0.47 | net L/S SPY-beta -0.02
+  resid-EW : D10-D1 Sharpe +0.15 | mono +0.50
+  resid-SPY: D10-D1 Sharpe +0.12 | mono +0.47
+  --> mono raw +0.47 -> EW +0.50 / SPY +0.47   [NOT beta - real tail effect]
+
+=== alpha009  IC +0.0075 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):       4.8   6.5   6.6   7.1   8.2  11.9   8.0   8.0   7.0   3.8
+  resid-EW(bps):     -2.4  -0.6  -0.9  -0.5   0.9   5.3   1.1   1.1   0.4  -2.6
+  resid-SPY(bps):    -1.8  -0.0  -0.1   0.2   1.4   5.5   1.5   1.6   0.5  -2.8
+  avg SPY-beta:      1.10  1.08  1.08  1.08  1.08  1.08  1.09  1.08  1.08  1.10
+  RAW      : D10-D1 Sharpe -0.23 | mono +0.18 | net L/S SPY-beta -0.00
+  resid-EW : D10-D1 Sharpe -0.05 | mono +0.28
+  resid-SPY: D10-D1 Sharpe -0.24 | mono +0.28
+  --> mono raw +0.18 -> EW +0.28 / SPY +0.28   [partly beta]
+
+=== alpha035  IC +0.0098 ===
+  decile:           D 1 D 2 D 3 D 4 D 5 D 6 D 7 D 8 D 9 D10
+  raw ret(bps):      12.3   7.4   5.4   7.2   6.6   6.5   6.8   7.3   8.1   9.2
+  resid-EW(bps):      2.0  -1.3  -1.7  -0.9  -1.5  -0.8  -0.2   0.5   1.4   3.2
+  resid-SPY(bps):     2.9   0.1  -1.0  -0.3  -0.8  -0.4   0.1   0.7   1.5   3.1
+  avg SPY-beta:      1.04  1.07  1.09  1.10  1.11  1.11  1.10  1.10  1.09  1.07
+  RAW      : D10-D1 Sharpe +0.01 | mono +0.12 | net L/S SPY-beta +0.03
+  resid-EW : D10-D1 Sharpe -0.00 | mono +0.50
+  resid-SPY: D10-D1 Sharpe -0.06 | mono +0.41
+  --> mono raw +0.12 -> EW +0.50 / SPY +0.41   [BETA ARTIFACT (SPY)]
+

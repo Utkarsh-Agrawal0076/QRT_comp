@@ -1,0 +1,44 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 4117 dates x 4999 tickers (2010-01-04 -> 2026-05-15)
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+  built alpha043
+  built alpha019
+  built alpha073
+
+==================================================================
+FROZEN 6-ALPHA HYSTERESIS INVERSE-VOL ENSEMBLE — IS vs OOS
+==================================================================
+
+  IN-SAMPLE 2010-2020: 2010-03-31 -> 2020-12-31  (2709 days)
+    Gross Sharpe 2.35 | Net Sharpe 1.57 | turnover 56% | net ann ret 6.8% | vol 4.3% | maxDD -9.2%
+
+  OUT-OF-SAMPLE 2021+: 2021-01-04 -> 2026-05-15  (1348 days)
+    Gross Sharpe 1.20 | Net Sharpe 0.65 | turnover 55% | net ann ret 3.9% | vol 6.0% | maxDD -4.8%
+
+  --- Year-by-year net Sharpe (OOS years bold-starred) ---
+   year  netSharpe  annret%
+   2010       2.74      7.5
+   2011       1.94      7.2
+   2012       2.98      6.4
+   2013       2.58      5.5
+   2014       1.03      3.4
+   2015       1.30      4.2
+   2016       1.57      6.0
+   2017       0.58      1.5
+   2018       0.32      1.1
+   2019       1.57      4.5
+   2020       2.65     27.6
+   2021       0.40      2.9 *OOS
+   2022       0.88      6.2 *OOS
+   2023       1.08      4.5 *OOS
+   2024       0.16      0.7 *OOS
+   2025       0.98      5.4 *OOS
+   2026       0.40      3.2 *OOS
+
+Saved ensemble_oos_net_pnl.csv

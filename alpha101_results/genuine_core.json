@@ -1,0 +1,133 @@
+{
+  "criteria": "|t-stat|>=3 (significant IC) AND decile L/S Sharpe>=0.7; 2010-2020 in-sample, T+1, 5M-ADV universe",
+  "genuine_robust": [
+    {
+      "alpha": "alpha044",
+      "direction": "long",
+      "mean_ic": 0.0085,
+      "t_stat": 9.6,
+      "ls_sharpe": 1.48
+    },
+    {
+      "alpha": "alpha024",
+      "direction": "long",
+      "mean_ic": 0.0082,
+      "t_stat": 4.4,
+      "ls_sharpe": 1.34
+    },
+    {
+      "alpha": "alpha016",
+      "direction": "long",
+      "mean_ic": 0.0094,
+      "t_stat": 11.5,
+      "ls_sharpe": 1.3
+    },
+    {
+      "alpha": "alpha055",
+      "direction": "long",
+      "mean_ic": 0.0072,
+      "t_stat": 9.9,
+      "ls_sharpe": 1.26
+    },
+    {
+      "alpha": "alpha078",
+      "direction": "long",
+      "mean_ic": 0.0049,
+      "t_stat": 5.0,
+      "ls_sharpe": 1.23
+    },
+    {
+      "alpha": "alpha013",
+      "direction": "long",
+      "mean_ic": 0.0088,
+      "t_stat": 11.0,
+      "ls_sharpe": 1.2
+    },
+    {
+      "alpha": "alpha022",
+      "direction": "long",
+      "mean_ic": 0.0054,
+      "t_stat": 5.7,
+      "ls_sharpe": 1.2
+    },
+    {
+      "alpha": "alpha084",
+      "direction": "long",
+      "mean_ic": 0.0072,
+      "t_stat": 3.9,
+      "ls_sharpe": 1.15
+    },
+    {
+      "alpha": "alpha023",
+      "direction": "long",
+      "mean_ic": 0.0048,
+      "t_stat": 3.0,
+      "ls_sharpe": 1.1
+    },
+    {
+      "alpha": "alpha005",
+      "direction": "long",
+      "mean_ic": 0.0081,
+      "t_stat": 4.1,
+      "ls_sharpe": 1.03
+    },
+    {
+      "alpha": "alpha040",
+      "direction": "long",
+      "mean_ic": 0.0068,
+      "t_stat": 5.7,
+      "ls_sharpe": 1.0
+    },
+    {
+      "alpha": "alpha083",
+      "direction": "long",
+      "mean_ic": 0.0089,
+      "t_stat": 5.1,
+      "ls_sharpe": 0.84
+    },
+    {
+      "alpha": "alpha030",
+      "direction": "long",
+      "mean_ic": 0.0056,
+      "t_stat": 3.4,
+      "ls_sharpe": 0.82
+    },
+    {
+      "alpha": "alpha041",
+      "direction": "long",
+      "mean_ic": 0.0092,
+      "t_stat": 5.3,
+      "ls_sharpe": 0.72
+    },
+    {
+      "alpha": "alpha073",
+      "direction": "long",
+      "mean_ic": 0.0054,
+      "t_stat": 3.5,
+      "ls_sharpe": 0.72
+    },
+    {
+      "alpha": "alpha059",
+      "direction": "long",
+      "mean_ic": 0.0044,
+      "t_stat": 6.5,
+      "ls_sharpe": 0.7
+    }
+  ],
+  "decorrelated_core": [
+    "alpha044",
+    "alpha024",
+    "alpha055",
+    "alpha078",
+    "alpha022",
+    "alpha084",
+    "alpha023",
+    "alpha005",
+    "alpha040",
+    "alpha083",
+    "alpha030",
+    "alpha073",
+    "alpha059"
+  ],
+  "core_avg_pairwise_corr": 0.247
+}

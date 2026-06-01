@@ -1,0 +1,4 @@
+{
+  "criteria": "mean_ic>0.02 and hit_rate>0.5",
+  "alphas": {}
+}

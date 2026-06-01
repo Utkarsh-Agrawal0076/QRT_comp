@@ -1,0 +1,11 @@
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+
+  method            | n.full n.OOS g.1y | 2024 | Mom CAPw / RISKc | Rev CAPw | SA CAPw
+  sharpe+floor0.15  |   1.48  1.39  2.22 | +0.3% |  14% /   5% |  37% |  50%
+  sharpe+floor0.25  |   1.46  1.35  2.41 | +1.3% |  21% /  23% |  37% |  41%
+  sharpe+floor0.35  |   1.30  1.22  2.49 | +2.2% |  30% /  47% |  37% |  33%
+  risk_parity       |   1.34  1.27  2.49 | +2.0% |  29% /  44% |  34% |  38%

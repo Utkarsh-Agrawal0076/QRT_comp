@@ -1,0 +1,59 @@
+Reporting on 49 selected alphas (2010..2020-12-31, T+1)
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 2769 dates x 4999 tickers (2010-01-04 -> 2020-12-31)
+  alpha016: IC +0.0094  L/S Sharpe +1.30
+  alpha013: IC +0.0088  L/S Sharpe +1.20
+  alpha015: IC +0.0076  L/S Sharpe -0.10
+  alpha055: IC +0.0072  L/S Sharpe +1.26
+  alpha044: IC +0.0085  L/S Sharpe +1.48
+  alpha100: IC +0.0080  L/S Sharpe +0.64
+  alpha040: IC +0.0068  L/S Sharpe +1.00
+  alpha011: IC +0.0065  L/S Sharpe +0.07
+  alpha035: IC +0.0098  L/S Sharpe +0.04
+  alpha054: IC +0.0092  L/S Sharpe +0.62
+  alpha041: IC +0.0092  L/S Sharpe +0.72
+  alpha083: IC +0.0089  L/S Sharpe +0.84
+  alpha043: IC +0.0081  L/S Sharpe +0.17
+  alpha056: IC +0.0080  L/S Sharpe +0.39
+  alpha034: IC +0.0078  L/S Sharpe +0.48
+  alpha057: IC +0.0079  L/S Sharpe +0.58
+  alpha024: IC +0.0082  L/S Sharpe +1.34
+  alpha053: IC +0.0067  L/S Sharpe +0.43
+  alpha005: IC +0.0081  L/S Sharpe +1.03
+  alpha009: IC +0.0075  L/S Sharpe -0.19
+  alpha025: IC +0.0075  L/S Sharpe +0.38
+  alpha081: IC +0.0059  L/S Sharpe +nan
+  alpha002: IC +0.0054  L/S Sharpe +0.43
+  alpha027: IC +0.0048  L/S Sharpe +nan
+  alpha050: IC +0.0050  L/S Sharpe -0.19
+  alpha059: IC +0.0044  L/S Sharpe +0.70
+  alpha022: IC +0.0054  L/S Sharpe +1.20
+  alpha026: IC +0.0056  L/S Sharpe +0.63
+  alpha075: IC +0.0042  L/S Sharpe +nan
+  alpha012: IC +0.0053  L/S Sharpe +0.48
+  alpha078: IC +0.0049  L/S Sharpe +1.23
+  alpha099: IC +0.0043  L/S Sharpe +nan
+  alpha067: IC +0.0055  L/S Sharpe +0.52
+  alpha036: IC +0.0047  L/S Sharpe -0.25
+  alpha084: IC +0.0072  L/S Sharpe +1.15
+  alpha086: IC +0.0046  L/S Sharpe +nan
+  alpha019: IC +0.0078  L/S Sharpe +0.59
+  alpha018: IC +0.0062  L/S Sharpe +0.43
+  alpha073: IC +0.0054  L/S Sharpe +0.72
+  alpha030: IC +0.0056  L/S Sharpe +0.82
+  alpha060: IC +0.0053  L/S Sharpe -0.00
+  alpha087: IC +0.0046  L/S Sharpe -0.18
+  alpha001: IC +0.0056  L/S Sharpe +0.23
+  alpha038: IC +0.0075  L/S Sharpe +0.33
+  alpha033: IC +0.0074  L/S Sharpe -0.07
+  alpha010: IC +0.0055  L/S Sharpe -0.50
+  alpha070: IC +0.0040  L/S Sharpe -0.35
+  alpha020: IC +0.0052  L/S Sharpe +0.50
+  alpha023: IC +0.0048  L/S Sharpe +1.10
+
+Saved -> alpha101_results\SELECTED_REPORT.md
+        alpha101_results\corr_matrix.csv
+        alpha101_results\corr_heatmap.png
+De-correlated subset (26): ['alpha016', 'alpha015', 'alpha055', 'alpha059', 'alpha040', 'alpha022', 'alpha026', 'alpha041', 'alpha012', 'alpha043', 'alpha078', 'alpha056', 'alpha034', 'alpha024', 'alpha053', 'alpha005', 'alpha084', 'alpha019', 'alpha030', 'alpha060', 'alpha087', 'alpha001', 'alpha010', 'alpha070', 'alpha020', 'alpha023']

@@ -1,0 +1,30 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 4117 dates x 4999 tickers (2010-01-04 -> 2026-05-15)
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+
+========= HIERARCHICAL: no-floor vs Momentum floor =========
+  no floor           IS  1.39 | OOS  1.20 | OOS ret  3.4% | OOS maxDD  -2.6% | 2024  -0.5% (-0.24)
+  Mom floor 15%      IS  1.50 | OOS  1.26 | OOS ret  3.6% | OOS maxDD  -2.5% | 2024  +0.1% (+0.06)
+
+  --- OOS yearly net return % (Sharpe) : Mom-floor ensemble ---
+    2021:  +3.3% (+1.03)
+    2022:  +3.6% (+1.18)
+    2023:  +5.7% (+2.52)
+    2024:  +0.1% (+0.06)
+    2025:  +5.2% (+1.71)
+    2026:  +1.2% (+0.92)
+
+  --- OOS realised risk contribution ---
+    no floor   : Reversal= 60%  Mom=  2%  SA= 38%
+    Mom floor  : Reversal= 62%  Mom=  6%  SA= 31%
+
+  --- avg Momentum capital alloc (OOS) ---
+    no floor: 1.282 | floor: 1.954
+
+Saved ensemble_floor_net_pnl.csv

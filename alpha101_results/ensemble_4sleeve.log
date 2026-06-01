@@ -1,0 +1,37 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 4117 dates x 4999 tickers (2010-01-04 -> 2026-05-15)
+  built alpha024
+  built alpha041
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+  built alpha100
+  built alpha043
+
+======================================================================
+4-SLEEVE ENSEMBLE (alpha024/041/100/043) — IS vs OOS
+======================================================================
+  IN-SAMPLE 2010-2020 : Net Sh 1.31 | Gross Sh 2.05 | turn 59% | net ret 6.2% | vol 4.7% | maxDD -13.6%
+  OUT-OF-SAMPLE 2021+ : Net Sh 0.89 | Gross Sh 1.50 | turn 58% | net ret 5.0% | vol 5.6% | maxDD -6.3%
+
+  --- Year-by-year net Sharpe ---
+    2010:  2.73
+    2011:  1.36
+    2012:  2.85
+    2013:  2.54
+    2014:  1.14
+    2015:  1.71
+    2016:  0.89
+    2017: -0.07
+    2018:  0.48
+    2019:  1.26
+    2020:  2.20
+    2021:  0.66  *OOS
+    2022:  1.26  *OOS
+    2023:  1.46  *OOS
+    2024: -0.12  *OOS
+    2025:  0.90  *OOS
+    2026:  1.28  *OOS
+
+Saved ensemble_4sleeve_net_pnl.csv

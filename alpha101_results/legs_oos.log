@@ -1,0 +1,15 @@
+Loading OHLCV pickle...
+Loading returns / universe...
+Loading market cap / industry classification...
+Panel ready: 4117 dates x 4999 tickers (2010-01-04 -> 2026-05-15)
+
+alpha    | IS netSh IS turn IS ret% | OOS netSh OOS turn OOS ret% OOS DD% | retain
+--------------------------------------------------------------------------------------------
+alpha024 |     1.53     18%     6.0 |      1.08      17%      6.4    -5.3 |    70%
+alpha041 |     0.80     66%     4.0 |      0.44      65%      2.6    -9.2 |    55%
+C:\Users\USER\Documents\GitHub\QRT_comp\venv\Lib\site-packages\pandas\core\internals\blocks.py:347: RuntimeWarning: invalid value encountered in sqrt
+  result = func(self.values, **kwargs)
+alpha100 |     1.03     55%     4.1 |      0.54      52%      3.0    -6.2 |    52%
+alpha043 |     0.49     58%     2.5 |      0.10      57%      0.7    -7.4 |    21%
+alpha019 |     0.68     33%     2.8 |     -0.20      31%     -1.3   -13.0 |   -29%
+alpha073 |     0.53     54%     2.7 |     -0.15      52%     -1.0   -13.0 |   -29%
